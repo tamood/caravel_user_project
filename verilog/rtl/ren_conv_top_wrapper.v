@@ -74,8 +74,8 @@ wire [31:0]	wbs_dat_out_8;
 wire [31:0]	wbs_dat_out_9;
 wire [31:0]	wbs_dat_out_10;
 
-wire [10:0] m_wb_rst_i,
-wire [10:0] m_wbs_stb_i,
+wire [10:0] m_wb_rst_i;
+wire [10:0] m_wbs_stb_i;
 
 
 
@@ -406,7 +406,7 @@ wire [10:0] m_wbs_stb_i,
     .io_oeb(io_oeb),
 
     // IRQ
-    .irq(user_irq)
+    .irq(user_irq),
     
     //slaves
     .m_wb_rst_i(m_wb_rst_i),

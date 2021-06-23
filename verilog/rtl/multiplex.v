@@ -83,7 +83,8 @@ module multiplex(
         irq = 0;
         cs_dec = (16'b01 << wbs_adr_i[27:24]) & {16{this_adr & wbs_stb_i}};    
         m_wbs_stb_i = cs_dec;
-        m_wb_rst_i = la_data_in | {11{wb_rst_i}};
+        //m_wb_rst_i = la_data_in | {11{wb_rst_i}};
+        m_wb_rst_i =  {11{wb_rst_i}};
         
         la_data_out = {128{wbs_stb_i}};
         io_oeb = ~(38'b0);

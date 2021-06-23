@@ -56,6 +56,7 @@ module ren_conv_top
 	wire 			we_kern_ram;
 	wire 			we_res_ram;
 	wire	[31:0]	data_out_regs;
+	reg		[31:0]	data_out_regs_r;
 	wire	[7:0]	data_out_result;
 	wire			clk;
 	wire			reset;
@@ -95,10 +96,11 @@ module ren_conv_top
 	assign we_kern_ram	= (wbs_adr_i[9:8]==2) & valid & wbs_we_i;
 	assign we_res_ram	= (wbs_adr_i[9:8]==3) & valid & wbs_we_i;
 
-	always@(posedge clk)
-		if(reset)					rdata <= 0;
-		else if(wbs_adr_i[9:8]==0)	rdata <= data_out_regs;
-		else if(wbs_adr_i[9:8]==3)	rdata <= data_out_result;
+	always@(posedge clk)	data_out_regs_r <= data_out_regs;
+
+	always@*
+		if(wbs_adr_i[9:8]==0)	rdata = data_out_regs_r;
+		else					rdata = data_out_result;
 		
 	always@(posedge clk)
 		if(reset | ready)			ready <= 0;
