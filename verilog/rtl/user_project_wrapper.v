@@ -340,7 +340,7 @@ wire [10:0] m_wbs_ack_out;
     
         // Logic Analyzer
 
-    //.la_data_in(la_data_in),
+    .la_data_in(la_data_in[10:0]),
     .la_data_out(la_data_out),
     //.la_oenb (la_oenb),
 
