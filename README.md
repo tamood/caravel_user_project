@@ -4,11 +4,11 @@
 
 This repo contains a design to accelerate inference in machine learning problems. 
 More specifically, the accelerator offloads and accelerates convolution and max pooling operations. 
-Top level wrapper has four identical REN_CONV_TOP cores that are R/W accessible from wishbone master interface.
+Top level wrapper has eleven identical REN_CONV_TOP cores that are R/W accessible from wishbone master interface.
 The main idea is that a processor that wants to offload, writes three rows of an image and a set of kernels that need to be applied on image using wishbone interface to internal memory of accelerator, configures accelerator and kickstarts it. 
 Accelerator then performs the configured operations (convolution and maxpool), writes back results to results RAM and asserts a done signal which is readable using wishbone interface. 
 The processor can poll done signal and read back result ram for results. 
-Since there are four cores, so processor can software pipeline the execution to further optimize time consumed in calculation.
+Since there are eleven cores, so processor can software pipeline the execution to further optimize time consumed in calculation.
 
 ![Block Diagram](./docs/source/_static/Top-level.PNG)
 
