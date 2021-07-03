@@ -45,7 +45,7 @@ module multiplex(
     output reg [37:0] io_out,
     output reg [37:0] io_oeb,
     
- //   input  [127:0] la_data_in,
+    input  [10:0] la_data_in,
     output reg [127:0] la_data_out,
  //   input  [127:0] la_oenb,
 
@@ -84,6 +84,7 @@ module multiplex(
         cs_dec = (16'b01 << wbs_adr_i[27:24]) & {16{this_adr & wbs_stb_i}};    
         m_wbs_stb_i = cs_dec;
         m_wb_rst_i = la_data_in | {11{wb_rst_i}};
+        //m_wb_rst_i =  {11{wb_rst_i}};
         
         la_data_out = {128{wbs_stb_i}};
         io_oeb = ~(38'b0);
